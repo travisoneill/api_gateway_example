@@ -1,0 +1,15 @@
+cd gateway
+source env/bin/activate
+export FLASK_DEBUG=1
+python api_gateway.py development & bg
+deactivate
+cd ../flask
+source env/bin/activate
+export FLASK_DEBUG=1
+python flask_server.py development & bg
+deactivate
+cd ../templates
+DEBUG=express:* node template_server.js & bg
+cd ../express
+DEBUG=express:* node express_server.js & bg
+cd ..

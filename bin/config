@@ -1,0 +1,18 @@
+#!/bin/bash
+cd gateway
+pip install virtualenv
+virtualenv -p python3 env
+source env/bin/activate
+pip install -r requirements.txt
+deactivate
+cd ../flask
+pip install virtualenv
+virtualenv -p python3 env
+source env/bin/activate
+pip install -r requirements.txt
+deactivate
+cd ../express
+npm install
+cd ../templates
+npm install
+cd ..
