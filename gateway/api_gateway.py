@@ -16,8 +16,8 @@ def root():
 def say_hello(service):
 
     services = {
-        'flask': { 'url': 'https://flask-dot-flask-algo.appspot.com', 'send': False },
-        'express': {'url': 'https://express-dot-flask-algo.appspot.com', 'send': False }
+        'flask': { 'url': 'https://flask-dot-flask-algo.appspot.com/', 'send': False },
+        'express': {'url': 'https://express-dot-flask-algo.appspot.com/', 'send': False }
     }
 
     if service == 'everyone':
