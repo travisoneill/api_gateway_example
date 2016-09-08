@@ -9,15 +9,15 @@ def test():
 
 @app.route('/')
 def root():
-    res = requests.get('http://localhost:8003/')
+    res = requests.get('https://template-dot-flask-algo.appspot.com/')
     return res.content
 
 @app.route('/hello/<service>')
 def say_hello(service):
 
     services = {
-        'flask': { 'url': 'http://localhost:8001/', 'send': False },
-        'express': {'url': 'http://localhost:8002/', 'send': False }
+        'flask': { 'url': 'https://flask-dot-flask-algo.appspot.com', 'send': False },
+        'express': {'url': 'https://express-dot-flask-algo.appspot.com', 'send': False }
     }
 
     if service == 'everyone':
@@ -36,7 +36,7 @@ def say_hello(service):
 
 @app.route('/<path>')
 def static_file(path):
-    res = requests.get('http://localhost:8003/' + path)
+    res = requests.get('https://template-dot-flask-algo.appspot.com/' + path)
     return res.content, 200, {'Content-Type': res.headers['Content-Type']}
 
 
