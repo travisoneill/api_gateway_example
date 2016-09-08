@@ -1,5 +1,5 @@
 {
-  "name": "gateway",
+  "name": "template",
   "version": "1.0.0",
   "description": "",
   "main": "template_server.js",
@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node template_server.js"
+    "start": "node template_server.js",
+    "deploy": "gcloud app deploy"
   },
   "keywords": [],
   "author": "",
