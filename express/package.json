@@ -7,6 +7,8 @@
     "node": "~6"
   },
   "scripts": {
+    "start": "node node_server.js",
+    "deploy": "gcloud app deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
