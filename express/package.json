@@ -1,5 +1,5 @@
 {
-  "name": "gateway",
+  "name": "express_server",
   "version": "1.0.0",
   "description": "",
   "main": "api_gateway.js",
@@ -7,7 +7,7 @@
     "node": "~6"
   },
   "scripts": {
-    "start": "node node_server.js",
+    "start": "node express_server.js",
     "deploy": "gcloud app deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
