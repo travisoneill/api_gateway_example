@@ -2,7 +2,7 @@
   "name": "express_server",
   "version": "1.0.0",
   "description": "",
-  "main": "api_gateway.js",
+  "main": "flask_server.js",
   "engines": {
     "node": "~6"
   },
