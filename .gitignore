@@ -11,7 +11,7 @@ env/
 /assets/lodash/
 /assets/contour/
 /assets/src/
-
+bin/*
 
 
 # Ignore all logfiles and tempfiles.

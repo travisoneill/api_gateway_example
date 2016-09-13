@@ -9,15 +9,22 @@ def test():
 
 @app.route('/')
 def root():
-    res = requests.get('https://template-dot-flask-algo.appspot.com/')
+
+    # res = requests.get('https://template-dot-flask-algo.appspot.com/')
+    res = requests.get('http://localhost:8003/')
+    print(res.content)
     return res.content
 
 @app.route('/hello/<service>')
 def say_hello(service):
 
+    # services = {
+    #     'flask': { 'url': 'https://flask-dot-flask-algo.appspot.com/', 'send': False },
+    #     'express': {'url': 'https://express-dot-flask-algo.appspot.com/', 'send': False }
+    # }
     services = {
-        'flask': { 'url': 'https://flask-dot-flask-algo.appspot.com/', 'send': False },
-        'express': {'url': 'https://express-dot-flask-algo.appspot.com/', 'send': False }
+        'flask1': { 'url': 'http://localhost:8001/', 'send': False },
+        'flask2': {'url': 'http://localhost:8002/', 'send': False }
     }
 
     if service == 'everyone':
@@ -36,7 +43,9 @@ def say_hello(service):
 
 @app.route('/<path>')
 def static_file(path):
-    res = requests.get('https://template-dot-flask-algo.appspot.com/' + path)
+    # res = requests.get('https://template-dot-flask-algo.appspot.com/' + path)
+    print(path)
+    res = requests.get('http://localhost:8003/' + path)
     return res.content, 200, {'Content-Type': res.headers['Content-Type']}
 
 
