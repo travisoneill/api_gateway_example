@@ -3,30 +3,22 @@ import sys
 from flask import Flask
 app = Flask(__name__)
 
+#development ports {static: 8003, flask1: 8001, flask2: 8002}
 @app.route('/test')
 def test():
     return "GATEWAY OPERATIONAL"
 
 @app.route('/')
 def root():
-
-    res = requests.get('https://template-dot-flask-algo.appspot.com/')
-    # res = requests.get('http://localhost:8003/')
-    print(res.content)
+    res = requests.get('https://static-dot-flask-algo.appspot.com/')
     return res.content
 
 @app.route('/hello/<service>')
 def say_hello(service):
-
     services = {
-        'flask': { 'url': 'https://flask1-dot-flask-algo.appspot.com/', 'send': False },
-        'express': {'url': 'https://flask1-dot-flask-algo.appspot.com/', 'send': False }
+        'flask1': { 'url': 'https://flask1-dot-flask-algo.appspot.com/', 'send': False },
+        'flask2': {'url': 'https://flask2-dot-flask-algo.appspot.com/', 'send': False }
     }
-    # services = {
-        # 'flask1': { 'url': 'http://localhost:8001/', 'send': False },
-        # 'flask2': {'url': 'http://localhost:8002/', 'send': False }
-    # }
-
     if service == 'everyone':
         for key, val in services.items():
             val['send'] = True
@@ -43,14 +35,12 @@ def say_hello(service):
 
 @app.route('/<path>')
 def static_file(path):
-    # res = requests.get('https://template-dot-flask-algo.appspot.com/' + path)
-    print(path)
-    res = requests.get('http://localhost:8003/' + path)
+    res = requests.get('https://static-dot-flask-algo.appspot.com/' + path)
     return res.content, 200, {'Content-Type': res.headers['Content-Type']}
 
 
 if __name__  == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == 'development':
-        app.run(port=int(5000))
+        app.run(port=int(8000))
     else:
         app.run()
