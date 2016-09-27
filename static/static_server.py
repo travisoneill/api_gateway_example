@@ -3,9 +3,6 @@ from flask import Flask, url_for
 
 app = Flask(__name__)
 
-# url_for('static', filename='style.css')
-# url_for('static', filename='index.js')
-
 @app.route('/hello')
 def say_hello():
     return 'Flask server 2 says hello!'
