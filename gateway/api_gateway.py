@@ -11,6 +11,9 @@ def test():
 
 @app.route('/')
 def root():
+    print(os.environ)
+    print(os.environ['GAE_APPENGINE_HOSTNAME'])
+    print('https://static-dot-' + os.environ['GAE_APPENGINE_HOSTNAME'])
     res = requests.get('https://static-dot-' + os.environ['GAE_APPENGINE_HOSTNAME'])
     return res.content
 
