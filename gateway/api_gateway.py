@@ -5,6 +5,10 @@ from flask import Flask
 app = Flask(__name__)
 
 #development ports {static: 8003, flask1: 8001, flask2: 8002}
+@app.route('/environment')
+def test():
+    return str(os.environ)
+
 @app.route('/test')
 def test():
     return "GATEWAY OPERATIONAL"
