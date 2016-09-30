@@ -16,16 +16,16 @@ def test():
 @app.route('/')
 def root():
     print(os.environ)
-    print(os.environ['GAE_APPENGINE_HOSTNAME'])
-    print('https://static-dot-' + os.environ['GAE_APPENGINE_HOSTNAME'])
-    res = requests.get('https://static-dot-' + os.environ['GAE_APPENGINE_HOSTNAME'])
+    print(os.environ['GAE_LONG_APP_ID'])
+    print('https://static-dot-' + os.environ['GAE_LONG_APP_ID'] + '.appspot.com')
+    res = requests.get('https://static-dot-' + os.environ['GAE_LONG_APP_ID'] + '.appspot.com')
     return res.content
 
 @app.route('/hello/<service>')
 def say_hello(service):
     services = {
-        'flask1': { 'url': 'https://flask1-dot-' + os.environ['GAE_APPENGINE_HOSTNAME'], 'send': False },
-        'flask2': { 'url': 'https://flask2-dot-' + os.environ['GAE_APPENGINE_HOSTNAME'], 'send': False }
+        'flask1': { 'url': 'https://flask1-dot-' + os.environ['GAE_LONG_APP_ID'] + '.appspot.com', 'send': False },
+        'flask2': { 'url': 'https://flask2-dot-' + os.environ['GAE_LONG_APP_ID'] + '.appspot.com', 'send': False }
     }
     if service == 'everyone':
         for key, val in services.items():
@@ -43,7 +43,7 @@ def say_hello(service):
 
 @app.route('/<path>')
 def static_file(path):
-    res = requests.get('https://static-dot-' + os.environ['GAE_APPENGINE_HOSTNAME'] + '/' + path)
+    res = requests.get('https://static-dot-' + + os.environ['GAE_LONG_APP_ID'] + '.appspot.com' + '/' + path)
     return res.content, 200, {'Content-Type': res.headers['Content-Type']}
 
 
