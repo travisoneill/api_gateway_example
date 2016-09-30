@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 #development ports {static: 8003, flask1: 8001, flask2: 8002}
 @app.route('/environment')
-def test():
+def get_env():
     return str(os.environ)
 
 @app.route('/test')
