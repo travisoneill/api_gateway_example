@@ -25,8 +25,8 @@ def root():
 @app.route('/hello/<service>')
 def say_hello(service):
     services = {
-        'flask1': { 'url': 'https://flask1-dot-' + os.environ['GAE_LONG_APP_ID'] + '.appspot.com/hello', 'send': False },
-        'flask2': { 'url': 'https://flask2-dot-' + os.environ['GAE_LONG_APP_ID'] + '.appspot.com/hello', 'send': False }
+        'flask1': { 'url': 'https://flask1-dot-' + os.environ['GAE_LONG_APP_ID'] + '.appspot.com', 'send': False },
+        'flask2': { 'url': 'https://flask2-dot-' + os.environ['GAE_LONG_APP_ID'] + '.appspot.com', 'send': False }
     }
     if service == 'everyone':
         for key, val in services.items():
@@ -37,7 +37,7 @@ def say_hello(service):
     responses = []
     for key, val in services.items():
         if val['send'] == True:
-            res = requests.get(val['url'] + 'hello')
+            res = requests.get(val['url'] + '/hello')
             responses.append(res.content)
 
     return '\n'.encode().join(responses)
