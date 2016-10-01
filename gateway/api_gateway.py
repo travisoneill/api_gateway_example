@@ -18,6 +18,7 @@ def root():
     print(os.environ)
     print(os.environ['GAE_LONG_APP_ID'])
     print('https://static-dot-' + os.environ['GAE_LONG_APP_ID'] + '.appspot.com')
+    # return 'https://static-dot-' + os.environ['GAE_LONG_APP_ID'] + '.appspot.com'
     res = requests.get('https://static-dot-' + os.environ['GAE_LONG_APP_ID'] + '.appspot.com')
     return res.content
 
@@ -43,7 +44,7 @@ def say_hello(service):
 
 @app.route('/<path>')
 def static_file(path):
-    res = requests.get('https://static-dot-' + + os.environ['GAE_LONG_APP_ID'] + '.appspot.com' + '/' + path)
+    res = requests.get('https://static-dot-' + os.environ['GAE_LONG_APP_ID'] + '.appspot.com' + '/' + path)
     return res.content, 200, {'Content-Type': res.headers['Content-Type']}
 
 
