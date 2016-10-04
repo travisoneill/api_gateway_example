@@ -1,17 +1,6 @@
-# Ignore bundler config.
-/.bundle
-
-# Ignore js and node files
-bundle.js
-bundle.js.map
-node_modules/
-venv/
+# Ignore python virtual environment
 env/
-/assets/bundle.js
-/assets/lodash/
-/assets/contour/
-/assets/src/
-bin/*
+
 
 
 # Ignore all logfiles and tempfiles.
