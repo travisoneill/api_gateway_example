@@ -16,7 +16,7 @@ def map_services(environment):
             url_map[service] = local_url(local_port)
     return url_map
 
-def production_url(service_name, project_id):
+def production_url(service_name, project_id='flask-algo'):
     project_id = os.environ.get('GAE_LONG_APP_ID') + '.appspot.com'
     project_url = project_id + '.appspot.com'
     template = 'https://{}{}'

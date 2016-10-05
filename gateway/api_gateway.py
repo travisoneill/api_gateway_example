@@ -4,6 +4,11 @@ from flask import Flask
 import services_config
 app = Flask(__name__)
 
+@app.route('/env')
+def get_env():
+    print(app.config['SERVICE_MAP'])
+    return app.config
+
 @app.route('/')
 def root():
     '''Gets index.html from the static file server'''
