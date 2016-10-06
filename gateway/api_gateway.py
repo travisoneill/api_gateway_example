@@ -37,9 +37,10 @@ def static_file(path):
     res = requests.get(url + '/' + path)
     return res.content, 200, {'Content-Type': res.headers['Content-Type']}
 
-if len(sys.argv) > 1 and sys.argv[1] == '--development':
-    app.config['SERVICE_MAP'] = services_config.map_services('development')
-else:
-    app.config['SERVICE_MAP'] = services_config.map_services('production')
+if __name__ == '__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == '--development':
+        app.config['SERVICE_MAP'] = services_config.map_services('development')
+    else:
+        app.config['SERVICE_MAP'] = services_config.map_services('production')
 
-app.run()
+    app.run()
