@@ -41,7 +41,7 @@ def static_file(path):
 
 
 if __name__  == "__main__":
-    port = os.environ.get('PORT', 8000)
+    port = os.environ.get('PORT', 8080)
     if len(sys.argv) > 1 and sys.argv[1] == '--development':
         app.config['SERVICE_MAP'] = services_config.map_services('development')
         app.run(port=port)
