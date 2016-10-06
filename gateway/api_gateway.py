@@ -3,6 +3,7 @@ import sys
 from flask import Flask
 import services_config
 app = Flask(__name__)
+app.config['SERVICE_MAP'] = services_config.map_services('production')
 
 @app.route('/env')
 def get_env():
@@ -40,7 +41,4 @@ def static_file(path):
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == '--development':
         app.config['SERVICE_MAP'] = services_config.map_services('development')
-    else:
-        app.config['SERVICE_MAP'] = services_config.map_services('production')
-
     app.run()
