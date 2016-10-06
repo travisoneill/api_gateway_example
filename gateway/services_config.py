@@ -3,7 +3,7 @@ import os
 #to add services insert key value pair of the name of the service and
 #the port you want it to run on when running locally
 SERVICES = {
-    'default': 8000,
+    'default': 5000,
     'static': 8001
 }
 

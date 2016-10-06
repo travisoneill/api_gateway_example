@@ -1,7 +1,5 @@
 import requests
 import sys
-import os
-import argparse
 from flask import Flask
 import services_config
 app = Flask(__name__)
@@ -39,12 +37,9 @@ def static_file(path):
     res = requests.get(url + '/' + path)
     return res.content, 200, {'Content-Type': res.headers['Content-Type']}
 
+if len(sys.argv) > 1 and sys.argv[1] == '--development':
+    app.config['SERVICE_MAP'] = services_config.map_services('development')
+else:
+    app.config['SERVICE_MAP'] = services_config.map_services('production')
 
-if __name__  == "__main__":
-    port = os.environ.get('PORT', 8080)
-    if len(sys.argv) > 1 and sys.argv[1] == '--development':
-        app.config['SERVICE_MAP'] = services_config.map_services('development')
-        app.run(port=port)
-    else:
-        app.config['SERVICE_MAP'] = services_config.map_services('production')
-        app.run(port=port)
+app.run()
