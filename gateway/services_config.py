@@ -20,7 +20,7 @@ def map_services(environment):
 
 def production_url(service_name):
     '''Generates url for a service when deployed to App Engine'''
-    project_id = os.environ.get('GAE_LONG_APP_ID')
+    project_id = os.environ.get('GAE_LONG_APP_ID') or 'flask-algo'
     project_url = project_id + '.appspot.com'
     if service_name == 'default':
         return 'https://{project_url}'
