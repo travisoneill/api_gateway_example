@@ -1,10 +1,5 @@
 import os
-import argparse
 from flask import Flask
-
-#setup arg parser to handle development flag
-parser = argparse.ArgumentParser()
-parser.add_argument('-d', '--development', action='store_true')
 
 app = Flask(__name__)
 
@@ -29,6 +24,5 @@ def static_file(path):
     return app.send_static_file(path), 200, {'Content-Type': mimetype}
 
 if __name__  == "__main__":
-    args = parser.parse_args()
-    port = 8001 if args.development else os.environ.get('PORT')
+    port = os.environ.get('PORT') or 8001
     app.run(port=port)

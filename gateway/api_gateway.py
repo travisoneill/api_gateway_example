@@ -1,8 +1,7 @@
-import requests
 import os
-import argparse
-from flask import Flask
+import requests
 import services_config
+from flask import Flask
 
 #setup arg parser to handle development flag
 # parser = argparse.ArgumentParser()
@@ -27,6 +26,7 @@ def say_hello(service):
     #if 'gateway' is specified return immediate
     if service == 'gateway':
         return 'Gateway says hello'
+    #otherwise send request to service indicated by URL param
     responses = []
     url = app.config['SERVICE_MAP'][service]
     res = requests.get(url + '/hello')
