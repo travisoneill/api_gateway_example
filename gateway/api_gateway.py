@@ -40,5 +40,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     environment = 'development' if args.development else 'production'
     app.config['SERVICE_MAP'] = services_config.map_services(environment)
+    print('HERE')
+    print(app.config['SERVICE_MAP'])
     port = os.environ.get('PORT') or 8000
     app.run(port=port)
