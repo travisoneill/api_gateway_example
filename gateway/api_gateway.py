@@ -5,13 +5,13 @@ from flask import Flask
 import services_config
 
 #setup arg parser to handle development flag
-parser = argparse.ArgumentParser()
-parser.add_argument('-d', '--development', action='store_true')
-args = parser.parse_args()
-environment = 'development' if args.development else 'production'
-app = Flask(__name__)
+# parser = argparse.ArgumentParser()
+# parser.add_argument('-d', '--development', action='store_true')
+# args = parser.parse_args()
+# environment = 'development' if args.development else 'production'
+app = services_config.make_app(__name__)
+
 # services_config.make_app(app, environment)
-app.config['SERVICE_MAP'] = services_config.map_services(environment)
 
 
 @app.route('/')

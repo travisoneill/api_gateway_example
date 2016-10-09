@@ -14,8 +14,11 @@ SERVICES = {
     'static': 8001
 }
 
-def make_app(app, environment):
+def make_app(name):
+    app = Flask(name)
+    environment = 'production' if os.environ.get('GAE_LONG_APP_ID') else 'development'
     app.config['SERVICE_MAP'] = map_services(environment)
+    return app
 
 def map_services(environment):
     '''Generates a map of services to correct urls for running locally
