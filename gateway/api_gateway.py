@@ -4,11 +4,13 @@ import argparse
 from flask import Flask
 import services_config
 
-app = Flask(__name__)
-
 #setup arg parser to handle development flag
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--development', action='store_true')
+args = parser.parse_args()
+environment = 'development' if args.development else 'production'
+app = Flask(__name__)
+app.config['SERVICE_MAP'] = services_config.map_services(environment)
 
 @app.route('/')
 def root():
@@ -37,10 +39,5 @@ def static_file(path):
     return res.content, 200, {'Content-Type': res.headers['Content-Type']}
 
 if __name__ == '__main__':
-    args = parser.parse_args()
-    environment = 'development' if args.development else 'production'
-    app.config['SERVICE_MAP'] = services_config.map_services(environment)
-    print('HERE')
-    print(app.config['SERVICE_MAP'])
     port = os.environ.get('PORT') or 8000
     app.run(port=port)
