@@ -8,8 +8,10 @@ import services_config
 # parser.add_argument('-d', '--development', action='store_true')
 # args = parser.parse_args()
 # environment = 'development' if args.development else 'production'
-app = services_config.make_app()
+app = Flask(__name__)
+services_config.make_app(app)
 # app.config['SERVICE_MAP'] = services_config.map_services(environment)
+
 
 @app.route('/')
 def root():
@@ -38,4 +40,5 @@ def static_file(path):
     return res.content, 200, {'Content-Type': res.headers['Content-Type']}
 
 if __name__ == '__main__':
-    app.run(port=8000)
+    port = os.environ.get('PORT') or 8000
+    app.run(port=port)

@@ -15,11 +15,8 @@ SERVICES = {
     'static': 8001
 }
 
-def make_app():
-    app = Flask(__name__)
+def make_app(app):
     app.config['SERVICE_MAP'] = map_services(environment)
-    return app
-
 
 def map_services(environment):
     '''Generates a map of services to correct urls for running locally
