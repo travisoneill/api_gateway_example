@@ -1,12 +1,6 @@
 import os
 from flask import Flask
 
-#setup arg parser to handle development flag
-# parser = argparse.ArgumentParser()
-# parser.add_argument('-d', '--development', action='store_true')
-# args = parser.parse_args()
-# environment = 'development' if args.development else 'production'
-
 #to add services insert key value pair of the name of the service and
 #the port you want it to run on when running locally
 SERVICES = {
@@ -33,7 +27,7 @@ def map_services(environment):
 
 def production_url(service_name):
     '''Generates url for a service when deployed to App Engine'''
-    project_id = os.environ.get('GAE_LONG_APP_ID') or 'flask-algo'
+    project_id = os.environ.get('GAE_LONG_APP_ID')
     project_url = '{}.appspot.com'.format(project_id)
     if service_name == 'default':
         return 'https://{}'.format(project_url)

@@ -3,15 +3,7 @@ import requests
 import services_config
 from flask import Flask
 
-#setup arg parser to handle development flag
-# parser = argparse.ArgumentParser()
-# parser.add_argument('-d', '--development', action='store_true')
-# args = parser.parse_args()
-# environment = 'development' if args.development else 'production'
 app = services_config.make_app(__name__)
-
-# services_config.make_app(app, environment)
-
 
 @app.route('/')
 def root():
