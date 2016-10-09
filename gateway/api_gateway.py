@@ -10,8 +10,8 @@ parser.add_argument('-d', '--development', action='store_true')
 args = parser.parse_args()
 environment = 'development' if args.development else 'production'
 app = Flask(__name__)
-services_config.make_app(app, environment)
-# app.config['SERVICE_MAP'] = services_config.map_services(environment)
+# services_config.make_app(app, environment)
+app.config['SERVICE_MAP'] = services_config.map_services(environment)
 
 
 @app.route('/')
