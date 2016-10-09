@@ -1,9 +1,12 @@
 import os
 import argparse
+from flask import Flask
 
 #setup arg parser to handle development flag
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--development', action='store_true')
+args = parser.parse_args()
+environment = 'development' if args.development else 'production'
 
 #to add services insert key value pair of the name of the service and
 #the port you want it to run on when running locally
@@ -12,9 +15,8 @@ SERVICES = {
     'static': 8001
 }
 
-def make_app(app):
-    args = parser.parse_args()
-    environment = 'development' if args.development else 'production'
+def make_app():
+    app = Flask(__name__)
     app.config['SERVICE_MAP'] = map_services(environment)
     return app
 
