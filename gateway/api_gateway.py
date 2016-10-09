@@ -1,16 +1,24 @@
 import requests
 import os
-import argparse
 from flask import Flask
 import services_config
 
 #setup arg parser to handle development flag
-parser = argparse.ArgumentParser()
-parser.add_argument('-d', '--development', action='store_true')
-args = parser.parse_args()
-environment = 'development' if args.development else 'production'
-app = Flask(__name__)
-app.config['SERVICE_MAP'] = services_config.map_services(environment)
+# parser = argparse.ArgumentParser()
+# parser.add_argument('-d', '--development', action='store_true')
+# args = parser.parse_args()
+# environment = 'development' if args.development else 'production'
+app = services_config.make_app(Flask(__name__))
+# app.config['SERVICE_MAP'] = services_config.map_services(environment)
+
+@app.route('/env')
+def get_env():
+    '''Gets index.html from the static file server'''
+    print(str(app.config['SERVICE_MAP']))
+    print(str(app.config['SERVICE_MAP']['static']))
+    print(str(app.config['SERVICE_MAP']['default']))
+    print(str(os.environ))
+    return str(app.config)
 
 @app.route('/')
 def root():

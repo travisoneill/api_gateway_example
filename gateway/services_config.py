@@ -1,11 +1,23 @@
 import os
+import argparse
+
+#setup arg parser to handle development flag
+parser = argparse.ArgumentParser()
+parser.add_argument('-d', '--development', action='store_true')
 
 #to add services insert key value pair of the name of the service and
 #the port you want it to run on when running locally
 SERVICES = {
-    'default': 5000,
+    'default': 8000,
     'static': 8001
 }
+
+def make_app(app):
+    args = parser.parse_args()
+    environment = 'development' if args.development else 'production'
+    app.config['SERVICE_MAP'] = map_services(environment)
+    return app
+
 
 def map_services(environment):
     '''Generates a map of services to correct urls for running locally
@@ -21,12 +33,12 @@ def map_services(environment):
 def production_url(service_name):
     '''Generates url for a service when deployed to App Engine'''
     project_id = os.environ.get('GAE_LONG_APP_ID') or 'flask-algo'
-    project_url = project_id + '.appspot.com'
+    project_url = '{}.appspot.com'.format(project_id)
     if service_name == 'default':
-        return 'https://{project_url}'
+        return 'https://{}'.format(project_url)
     else:
-        return 'https://{service_name}-dot-{project_url}'
+        return 'https://{}-dot-{}'.format(service_name, project_url)
 
 def local_url(port):
     '''Generates url for a service when running locally'''
-    return 'http://localhost:' + str(port)
+    return 'http://localhost:{}'.format(str(port))
