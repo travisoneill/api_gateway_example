@@ -15,7 +15,7 @@ SERVICES = {
 }
 
 def make_app(environment, name):
-    flask_app = Flask(__name__)
+    flask_app = Flask(name)
     flask_app.config['SERVICE_MAP'] = map_services(environment)
     return flask_app
 
