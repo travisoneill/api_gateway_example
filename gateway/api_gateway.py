@@ -11,15 +11,6 @@ import services_config
 app = services_config.make_app(Flask(__name__))
 # app.config['SERVICE_MAP'] = services_config.map_services(environment)
 
-@app.route('/env')
-def get_env():
-    '''Gets index.html from the static file server'''
-    print(str(app.config['SERVICE_MAP']))
-    print(str(app.config['SERVICE_MAP']['static']))
-    print(str(app.config['SERVICE_MAP']['default']))
-    print(str(os.environ))
-    return str(app.config)
-
 @app.route('/')
 def root():
     '''Gets index.html from the static file server'''
@@ -47,5 +38,4 @@ def static_file(path):
     return res.content, 200, {'Content-Type': res.headers['Content-Type']}
 
 if __name__ == '__main__':
-    port = os.environ.get('PORT') or 8000
-    app.run(port=port)
+    app.run(port=8000)
